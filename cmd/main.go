@@ -1,10 +1,10 @@
 package main
 
 import (
-    "fmt"
+	"init_golang/conf"
 )
 
 func main() {
 
-    fmt.Print("Hello, World!")
+    conf.Init()
 }

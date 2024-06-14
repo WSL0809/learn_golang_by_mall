@@ -2,10 +2,11 @@ package conf
 
 import (
 	"fmt"
+	"init_golang/dao"
+	"strings"
 
 	"gopkg.in/ini.v1"
 )
-
 var (
 	AppMode     string
 	HttpPort    string
@@ -62,6 +63,9 @@ func Init() {
 	LoadPhotoPath(file)
 	LoadRabbitMQ(file)
 	LoadRedisData(file)
+	pathRead := strings.Join([]string{DbUser, ":", DbPassWord, "@tcp(", DbHost, ":", DbPort, ")/", DbName, "?charset=utf8mb4&parseTime=True&loc=Local"}, "")
+	pathWrite := strings.Join([]string{DbUser, ":", DbPassWord, "@tcp(", DbHost, ":", DbPort, ")/", DbName, "?charset=utf8mb4&parseTime=True&loc=Local"}, "")
+	dao.Database(pathRead, pathWrite)
 }
 
 func LoadRedisData(file *ini.File) {
