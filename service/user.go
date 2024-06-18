@@ -30,14 +30,7 @@ func (service *UserService) Register(ctx context.Context) serializer.Response {
 	util.Encrypt.SetKey(service.Key)
 	userDao := dao.NewUserDao(ctx)
 	_, exist, _ :=  userDao.ExistOrNotByUserName(service.UserName)
-	// if err != nil {
-	// 	code = e.ERROR
-	// 	return serializer.Response{
-	// 		Status: code,
-	// 		Msg:    e.GetMsg(code),
-	// 		Error:  err.Error(),
-	// 	}
-	// }
+
 	if exist {
 		code = e.ERROR_EXIST_USER
 		return serializer.Response{
